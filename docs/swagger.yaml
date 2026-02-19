@@ -1,0 +1,1074 @@
+basePath: /api
+definitions:
+  class.ClassIdRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+  class.EditClassRequest:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      semesterId:
+        type: string
+    required:
+    - id
+    - name
+    - semesterId
+    type: object
+  class.FilterClassRequest:
+    properties:
+      name:
+        type: string
+      semesterEndBefore:
+        type: string
+      semesterId:
+        type: string
+      semesterStartAfter:
+        type: string
+    type: object
+  class.NewClassRequest:
+    properties:
+      name:
+        type: string
+      semesterId:
+        type: string
+    required:
+    - name
+    - semesterId
+    type: object
+  lesson.EditLessonRequest:
+    properties:
+      classId:
+        type: string
+      endDate:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      startDate:
+        type: string
+    required:
+    - classId
+    - endDate
+    - id
+    - name
+    - startDate
+    type: object
+  lesson.FilterLessonRequest:
+    properties:
+      classId:
+        type: string
+      endDate:
+        type: string
+      reason:
+        type: string
+      startDate:
+        type: string
+    type: object
+  lesson.NewLessonRequest:
+    properties:
+      classId:
+        type: string
+      endDate:
+        type: string
+      name:
+        type: string
+      startDate:
+        type: string
+    required:
+    - classId
+    - endDate
+    - name
+    - startDate
+    type: object
+  lesson.SpecificLessonRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+  responseTypes.ClassResponse:
+    properties:
+      createdAt:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      semesterId:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  responseTypes.FilteredLesson:
+    properties:
+      classId:
+        type: string
+      className:
+        type: string
+      createdAt:
+        type: string
+      endDateTime:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      semesterId:
+        type: string
+      semesterName:
+        type: string
+      skipEntries:
+        items:
+          $ref: '#/definitions/responseTypes.SkipEntryResponse'
+        type: array
+      startDateTime:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  responseTypes.LessonResponse:
+    properties:
+      classId:
+        type: string
+      className:
+        type: string
+      createdAt:
+        type: string
+      endDateTime:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      startDateTime:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  responseTypes.SemesterResponse:
+    properties:
+      createdAt:
+        type: string
+      endDate:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      startDate:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  responseTypes.SkipEntryResponse:
+    properties:
+      amount:
+        type: number
+      createdAt:
+        type: string
+      id:
+        type: string
+      lessonId:
+        type: string
+      lessonName:
+        type: string
+      reason:
+        type: string
+      updatedAt:
+        type: string
+      userId:
+        type: string
+      userName:
+        type: string
+    type: object
+  responseTypes.SpecificLesson:
+    properties:
+      classId:
+        type: string
+      className:
+        type: string
+      createdAt:
+        type: string
+      endDateTime:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      semesterId:
+        type: string
+      semesterName:
+        type: string
+      startDateTime:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  semester.EditSemesterRequest:
+    properties:
+      endDate:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      startDate:
+        type: string
+    required:
+    - endDate
+    - id
+    - name
+    - startDate
+    type: object
+  semester.NewSemesterRequest:
+    properties:
+      endDate:
+        type: string
+      name:
+        type: string
+      startDate:
+        type: string
+    required:
+    - endDate
+    - name
+    - startDate
+    type: object
+  semester.SemesterIdRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+  skipEntry.CreateNewEntryRequest:
+    properties:
+      amountId:
+        type: string
+      lessonId:
+        type: string
+      reason:
+        type: string
+      userId:
+        type: string
+    required:
+    - amountId
+    - lessonId
+    - reason
+    - userId
+    type: object
+  skipEntry.EditSkipEntryRequest:
+    properties:
+      amountId:
+        type: string
+      id:
+        type: string
+      lessonId:
+        type: string
+      reason:
+        maxLength: 255
+        type: string
+      userId:
+        type: string
+    required:
+    - amountId
+    - id
+    - lessonId
+    - reason
+    - userId
+    type: object
+  skipEntry.FilterSkipEntryRequest:
+    properties:
+      amountId:
+        type: string
+      classId:
+        type: string
+      endDate:
+        type: string
+      lessonId:
+        type: string
+      reason:
+        type: string
+      semesterId:
+        type: string
+      startDate:
+        type: string
+      userId:
+        type: string
+    type: object
+  skipEntry.SingleIdRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+  user.CreateNewUserRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - password
+    - username
+    type: object
+  user.LoginRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API for the DebtCollector app
+  title: DeptCollector
+  version: Alpha
+paths:
+  /classes:
+    delete:
+      consumes:
+      - application/json
+      description: Deletes a class by its ID (from request body)
+      parameters:
+      - description: Delete class request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/class.ClassIdRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete a class
+      tags:
+      - Classes
+    get:
+      consumes:
+      - application/json
+      description: Retrieves a class by its ID (from request body)
+      parameters:
+      - description: Get class by ID
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/class.ClassIdRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responseTypes.ClassResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get a specific class
+      tags:
+      - Classes
+    post:
+      consumes:
+      - application/json
+      description: Creates a new class and returns the created record
+      parameters:
+      - description: Create new class
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/class.NewClassRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responseTypes.ClassResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Creates a new class
+      tags:
+      - Classes
+    put:
+      consumes:
+      - application/json
+      description: Updates class details like name or semester
+      parameters:
+      - description: Edit existing class
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/class.EditClassRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responseTypes.ClassResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Edit an existing class
+      tags:
+      - Classes
+  /classes/filter:
+    get:
+      consumes:
+      - application/json
+      description: Filters classes by name, semester ID, or semester start/end date
+      parameters:
+      - description: Filter classes
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/class.FilterClassRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/responseTypes.ClassResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Filter classes
+      tags:
+      - Classes
+  /lesson:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Lesson id to delete
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/lesson.SpecificLessonRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Deletes a lesson
+      tags:
+      - Lessons
+    get:
+      consumes:
+      - application/json
+      description: Get Specific lesson
+      parameters:
+      - description: Edit Lesson
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/lesson.SpecificLessonRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responseTypes.SpecificLesson'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get Specific lesson
+      tags:
+      - Lessons
+    post:
+      consumes:
+      - application/json
+      description: Creates a new lesson and returns it
+      parameters:
+      - description: Create new lesson
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/lesson.NewLessonRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responseTypes.LessonResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Creates a new lesson
+      tags:
+      - Lessons
+    put:
+      consumes:
+      - application/json
+      description: Edit a lesson and returns it
+      parameters:
+      - description: Edit Lesson
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/lesson.EditLessonRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responseTypes.LessonResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Edit a lesson
+      tags:
+      - Lessons
+  /lesson/filtered:
+    get:
+      consumes:
+      - application/json
+      description: Get filtered lesson based on a lot of optional filters
+      parameters:
+      - description: Edit Lesson
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/lesson.FilterLessonRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            items:
+              $ref: '#/definitions/responseTypes.FilteredLesson'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get filtered lessons
+      tags:
+      - Lessons
+  /semesters:
+    delete:
+      consumes:
+      - application/json
+      description: Deletes a semester by ID
+      parameters:
+      - description: Delete semester
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/semester.SemesterIdRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete a semester
+      tags:
+      - Semesters
+    get:
+      consumes:
+      - application/json
+      description: Returns semester details by Id
+      parameters:
+      - description: Get semester
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/semester.SemesterIdRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responseTypes.SemesterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get a specific semester
+      tags:
+      - Semesters
+    post:
+      consumes:
+      - application/json
+      description: Creates a new semester and returns it
+      parameters:
+      - description: Create new semester
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/semester.NewSemesterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responseTypes.SemesterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Creates a new semester
+      tags:
+      - Semesters
+    put:
+      consumes:
+      - application/json
+      description: Updates semester information
+      parameters:
+      - description: Edit semester
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/semester.EditSemesterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responseTypes.SemesterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Edit an existing semester
+      tags:
+      - Semesters
+  /skips:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a skip entry based on id
+      parameters:
+      - description: Edit skip entry
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/skipEntry.SingleIdRequest'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete a Skip entry
+      tags:
+      - SkipEntries
+    get:
+      consumes:
+      - application/json
+      description: Get a specific skip entry based on id
+      parameters:
+      - description: Edit skip entry
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/skipEntry.SingleIdRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responseTypes.SkipEntryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get a specific Skip entry
+      tags:
+      - SkipEntries
+    post:
+      consumes:
+      - application/json
+      description: Edit a skip entry based on id and returns it
+      parameters:
+      - description: Edit skip entry
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/skipEntry.EditSkipEntryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responseTypes.SkipEntryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Edit a Skip entry
+      tags:
+      - SkipEntries
+  /skips/filtered:
+    get:
+      consumes:
+      - application/json
+      description: Get a List of filtered Skip Entries based on a few filters in the
+        request body
+      parameters:
+      - description: Edit skip entry
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/skipEntry.FilterSkipEntryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/responseTypes.SkipEntryResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get a List of filtered Skip Entries
+      tags:
+      - SkipEntries
+  /user/checkAuth:
+    get:
+      description: Checks the auth status of a refresh and jwt token "JWT and Refresh
+        tokens in headers"
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+      summary: Check the auth status
+      tags:
+      - auth
+  /user/login:
+    post:
+      consumes:
+      - application/json
+      description: Login into account and returns JWT + refresh token
+      parameters:
+      - description: Login credentials
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.LoginRequest'
+      responses:
+        "200":
+          description: JWT and Refresh tokens in headers
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Login to a existing account
+      tags:
+      - auth
+  /user/signup:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new account and returns JWT + refresh token
+      parameters:
+      - description: New account data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/user.CreateNewUserRequest'
+      responses:
+        "200":
+          description: JWT and Refresh tokens in headers
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Register a new user
+      tags:
+      - auth
+swagger: "2.0"

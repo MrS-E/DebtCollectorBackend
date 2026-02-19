@@ -4,9 +4,12 @@ import (
 	"dept-collector/internal/api"
 	"dept-collector/internal/config"
 	"dept-collector/internal/pkg/validator"
+	"log"
+
+	_ "dept-collector/docs"
+
 	_ "github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"log"
 )
 
 // @title           DeptCollector

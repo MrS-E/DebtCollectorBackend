@@ -30,3 +30,9 @@ func deleteSemester(id uuid.UUID, db *gorm.DB) error {
 	result := db.Delete(&models.Semester{}, id)
 	return result.Error
 }
+
+func getAllSemesters(db *gorm.DB) ([]models.Semester, error) {
+	var semesters []models.Semester
+	result := db.Find(&semesters)
+	return semesters, result.Error
+}

@@ -19,7 +19,12 @@ func RegisterSemesterRoutes(router *gin.RouterGroup, db *gorm.DB) {
 	router.GET("/", func(c *gin.Context) {
 		semester.GetSpecificSemester(c, db)
 	})
+
 	router.DELETE("/", func(c *gin.Context) {
 		semester.DeleteSemester(c, db)
+	})
+
+	router.GET("/all", func(c *gin.Context) {
+		semester.GetAllSemesters(c, db)
 	})
 }

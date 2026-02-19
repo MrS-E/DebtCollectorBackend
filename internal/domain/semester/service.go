@@ -252,3 +252,19 @@ func DeleteSemester(c *gin.Context, db *gorm.DB) {
 
 	c.Status(http.StatusNoContent)
 }
+
+func GetAllSemesters(c *gin.Context, db *gorm.DB) {
+	_, err := auth.AuthenticateByHeader(c, db)
+	if err != nil {
+		responses.GenericUnauthorizedError(c.Writer)
+		return
+	}
+
+	semesters, err := getAllSemesters(db)
+	if err != nil {
+		responses.GenericInternalServerError(c.Writer)
+		return
+	}
+
+	c.JSON(http.StatusOK, formatSemesterResponse(semesters))
+}

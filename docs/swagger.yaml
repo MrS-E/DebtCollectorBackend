@@ -212,6 +212,15 @@ definitions:
       updatedAt:
         type: string
     type: object
+  responseTypes.UserResponse:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
   semester.EditSemesterRequest:
     properties:
       endDate:
@@ -340,7 +349,7 @@ info:
   title: DeptCollector
   version: Alpha
 paths:
-  /classes:
+  /class:
     delete:
       consumes:
       - application/json
@@ -485,7 +494,7 @@ paths:
       summary: Edit an existing class
       tags:
       - Classes
-  /classes/filter:
+  /class/filter:
     get:
       consumes:
       - application/json
@@ -999,6 +1008,43 @@ paths:
       summary: Get a List of filtered Skip Entries
       tags:
       - SkipEntries
+  /user:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: User UUID
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responseTypes.UserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get all the user information for a specific user
+      tags:
+      - data
   /user/checkAuth:
     get:
       description: Checks the auth status of a refresh and jwt token "JWT and Refresh

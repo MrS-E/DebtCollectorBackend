@@ -24,7 +24,7 @@ import (
 // @Failure      400  {string}  bad request
 // @Failure      401  {string}  unauthorized
 // @Failure      500  {string}  internal server error
-// @Router       /classes [post]
+// @Router       /class [post]
 func CreateNewClass(c *gin.Context, db *gorm.DB) {
 	var newClassRequest NewClassRequest
 
@@ -83,7 +83,7 @@ func CreateNewClass(c *gin.Context, db *gorm.DB) {
 // @Failure      401  {string}  unauthorized
 // @Failure      404  {string}  not found
 // @Failure      500  {string}  internal server error
-// @Router       /classes [put]
+// @Router       /class [put]
 func EditClass(c *gin.Context, db *gorm.DB) {
 	var editClassRequest EditClassRequest
 
@@ -152,7 +152,7 @@ func EditClass(c *gin.Context, db *gorm.DB) {
 // @Failure      401  {string}  unauthorized
 // @Failure      404  {string}  not found
 // @Failure      500  {string}  internal server error
-// @Router       /classes [get]
+// @Router       /class [get]
 func GetClass(c *gin.Context, db *gorm.DB) {
 	var request ClassIdRequest
 
@@ -206,7 +206,7 @@ func GetClass(c *gin.Context, db *gorm.DB) {
 // @Failure      401  {string}  unauthorized
 // @Failure      404  {string}  not found
 // @Failure      500  {string}  internal server error
-// @Router       /classes [delete]
+// @Router       /class [delete]
 func DeleteClass(c *gin.Context, db *gorm.DB) {
 	var request ClassIdRequest
 
@@ -251,7 +251,7 @@ func DeleteClass(c *gin.Context, db *gorm.DB) {
 // @Failure      400  {string}  bad request
 // @Failure      401  {string}  unauthorized
 // @Failure      500  {string}  internal server error
-// @Router       /classes/filter [get]
+// @Router       /class/filter [get]
 func GetFilteredClasses(c *gin.Context, db *gorm.DB) {
 	var filterRequest FilterClassRequest
 

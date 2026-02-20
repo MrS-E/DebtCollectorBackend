@@ -23,4 +23,8 @@ func registerAuthRoutes(router *gin.RouterGroup, db *gorm.DB) {
 	router.GET("/checkAuth", func(c *gin.Context) {
 		user.CheckAuth(c, db)
 	})
+
+	router.GET("", func(c *gin.Context) {
+		user.GetUser(c, db)
+	})
 }

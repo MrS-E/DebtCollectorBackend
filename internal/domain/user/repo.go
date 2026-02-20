@@ -4,6 +4,7 @@ import (
 	"dept-collector/internal/models"
 	"errors"
 
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -32,4 +33,10 @@ func getUserByName(username string, db *gorm.DB) (models.User, error) {
 func createNewUser(newUser *models.User, db *gorm.DB) error {
 	result := db.Create(newUser)
 	return result.Error
+}
+
+func getUserById(userID uuid.UUID, db *gorm.DB) (models.User, error) {
+	var user models.User
+	result := db.Where("user_id = ?", userID).First(&user)
+	return user, result.Error
 }

@@ -10,3 +10,7 @@ type LoginRequest struct {
 	Username string `json:"username" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
+
+type SingleIdRequest struct {
+	ID string `form:"id" binding:"required,uuid"`
+}

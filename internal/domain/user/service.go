@@ -7,6 +7,7 @@ import (
 	"dept-collector/internal/pkg/hashing"
 	"dept-collector/internal/pkg/jwt"
 	"dept-collector/internal/pkg/responses"
+	"dept-collector/internal/responseTypes"
 	"errors"
 	"log"
 	"net/http"
@@ -155,4 +156,54 @@ func CheckAuth(c *gin.Context, db *gorm.DB) {
 	}
 
 	c.JSON(http.StatusOK, "")
+}
+
+// GetUser godoc
+// @Summary      Get all the user information for a specific user
+// @Tags         data
+// @Accept       json
+// @Produce      json
+// @Param        id     query     string  true  "User UUID"
+// @Param        Authorization  header  string  true  "Bearer token"
+// @Success      200  {object}  responseTypes.UserResponse
+// @Failure      400  {string}  bad request
+// @Failure      404  {string}  not found
+// @Failure      500  {string}  Internal server error
+// @Router  /user [get]
+func GetUser(c *gin.Context, db *gorm.DB) {
+	var request SingleIdRequest
+	if err := c.ShouldBindQuery(&request); err != nil {
+		responses.GenericBadRequestError(c.Writer)
+		return
+	}
+
+	_, err := auth.AuthenticateByHeader(c, db)
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			responses.GenericNotFoundError(c.Writer)
+			return
+		}
+		responses.GenericUnauthorizedError(c.Writer)
+		return
+	}
+
+	userID, err := uuid.Parse(request.ID)
+	if err != nil {
+		responses.GenericBadRequestError(c.Writer, "Invalid class ID structure")
+		return
+	}
+
+	user, err := getUserById(userID, db)
+	if err != nil {
+		responses.GenericInternalServerError(c.Writer)
+		return
+	}
+
+	response := responseTypes.UserResponse{
+		ID:    user.ID,
+		Name:  user.Name,
+		Email: user.Email,
+	}
+
+	c.JSON(http.StatusOK, response)
 }

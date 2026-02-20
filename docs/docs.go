@@ -15,7 +15,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/classes": {
+        "/class": {
             "get": {
                 "description": "Retrieves a class by its ID (from request body)",
                 "consumes": [
@@ -235,7 +235,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/classes/filter": {
+        "/class/filter": {
             "get": {
                 "description": "Filters classes by name, semester ID, or semester start/end date",
                 "consumes": [
@@ -1015,6 +1015,62 @@ const docTemplate = `{
                 }
             }
         },
+        "/user": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "data"
+                ],
+                "summary": "Get all the user information for a specific user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User UUID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Bearer token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/responseTypes.UserResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/user/checkAuth": {
             "get": {
                 "description": "Checks the auth status of a refresh and jwt token \"JWT and Refresh tokens in headers\"",
@@ -1442,6 +1498,20 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "responseTypes.UserResponse": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 }
             }

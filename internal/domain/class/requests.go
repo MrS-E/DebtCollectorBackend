@@ -14,7 +14,7 @@ type EditClassRequest struct {
 }
 
 type ClassIdRequest struct {
-	ID string `json:"id" binding:"required,uuid"`
+	ID string `form:"id" binding:"required,uuid"`
 }
 
 type FilterClassRequest struct {
